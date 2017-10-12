@@ -16,16 +16,7 @@
   },
   "main": "./lib/main.js",
   "scripts": {
-    "build": "babel ./src --out-dir ./lib",
-    "audit": "nsp check package",
-    "lint": "#eslint src test",
-    "check": "npm run audit && ncu && npm outdated --depth 0",
-    "test": "npm run build && mocha ./test/main.js",
-    "validate": "npm run lint && npm test",
-    "prepare": "npm run build && npm run validate && npm run check",
-    "major": "pmm major",
-    "minor": "pmm minor",
-    "patch": "pmm patch"
+    "build": "babel ./src --out-dir ./lib"
   },
   "pre-commit": [
     "validate"
