@@ -16,6 +16,7 @@ const BUILD_DELETE = '/job/%s/%s/doDelete';
 
 const ALL_BUILDS = `/job/%s${API}?tree=allBuilds[%s]`;
 const LAST_SUCCESS = `/job/%s/lastSuccessfulBuild${API}`;
+const LAST_FAILURE = `/job/%s/lastFailedBuild${API}`;
 const TEST_REPORT = `/job/%s/%s/testReport${API}`;
 const LAST_BUILD = `/job/%s/lastBuild${API}`;
 const LAST_COMPLETED_BUILD = `/job/%s/lastCompletedBuild${API}`;
@@ -788,6 +789,22 @@ exports.init = function (host, defaultOptions, defaultParams) {
       doRequest({
         method: 'POST',
         urlPattern: [LAST_SUCCESS, jobName]
+      }, customParams, callback);
+    },
+
+    /**
+     * Get the last failed build report for a job
+     *
+     * @param {string} jobName
+     * @param {object|undefined} customParams is optional
+     * @param {function} callback
+     */
+    last_failure: function (jobName, customParams, callback) {
+      [jobName, customParams, callback] = doArgs(arguments, ['string', ['object', {}], 'function']);
+
+      doRequest({
+        method: 'POST',
+        urlPattern: [LAST_FAILURE, jobName]
       }, customParams, callback);
     },
 
